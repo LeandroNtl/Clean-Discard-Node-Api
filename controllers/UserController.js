@@ -42,12 +42,12 @@ class UserController {
 
             const newUser = await database.User.create({
                 name,
-                username,
+                username: name,
                 email,
                 password: passwordHash,
-                status,
-                role,
-                score
+                status: status || true,
+                role: role || "2",
+                score: score || 0,
             });
 
             return res.status(200).json(newUser);
