@@ -1,6 +1,6 @@
 const database = require('../models');
 const { hash } = require("bcryptjs")
-const uuid = require("uuid")
+// const uuid = require("uuid")
 
 class UserController {
 
@@ -28,7 +28,7 @@ class UserController {
     static async createUser(req, res) {
         try {
 
-            const { name, username, email, password, status, role, score } = req.body;
+            const { name, username, email, password, confirmPassword, status, role, score } = req.body;
 
             const user = await database.User.findOne({
                 where: { email: email }
@@ -38,11 +38,19 @@ class UserController {
                 return res.status(400).json({ error: "Email já cadastrado" })
             }
 
+            if (password.length < 8) {
+                return res.status(400).json({ error: "A senha deve ter no mínimo 8 caracteres" })
+            }
+
+            if (password !== confirmPassword) {
+                return res.status(400).json({ error: "As senhas não coincidem" })
+            }
+
             const passwordHash = await hash(password, 8)
 
             const newUser = await database.User.create({
                 name,
-                username: name,
+                username: username || name,
                 email,
                 password: passwordHash,
                 status: status || true,
