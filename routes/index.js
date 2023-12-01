@@ -9,13 +9,13 @@ const auth = require('./authRouter');
 module.exports = app => {
 
     app.use(bodyParser.json());
-
-    app.use(wastes);
+    
     app.use(discard_points);
     app.use(evaluations);
     app.use(discard_point_wastes);
     app.use(auth);
     app.use(users);
+    app.use(wastes);
 
     app.get('/', async (req, res) => {
         res.status(200).send({

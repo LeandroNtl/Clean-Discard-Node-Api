@@ -4,8 +4,7 @@ const authChecker = require('../middlewares/authChecker');
 
 const router = Router();
 
-// router.use(authChecker);
-
+//router.use(authChecker);
 router.get('/users', UserController.getUsers);
 router.get('/users/:id', UserController.getUser);
 router.post('/register', UserController.createUser);

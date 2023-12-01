@@ -1,6 +1,6 @@
 const database = require('../models');
 const { compare } = require("bcryptjs");
-const { sign } = require("jsonwebtoken");
+const { sign, verify } = require("jsonwebtoken");
 const jsonSecret = require("../config/secret");
 
 class AuthController {
@@ -48,6 +48,28 @@ class AuthController {
         } catch (error) {
             return res.status(500).json(error.message);
         }
+    }
+
+    static async verifyToken(req, res) {
+
+        const { token } = req.headers.authorization;
+
+        if (!token) {
+            return res.status(401).json({ error: "Token não encontrado" })
+        }
+
+        const [bearer, userToken] = token.split(" ");
+
+        try {
+
+            const decoded = await verify(userToken, jsonSecret.secret);
+
+            return res.status(200).send({ valid: true });
+
+        } catch (error) {
+            return res.status(401).send({ valid: false });
+        }
+
     }
 
 }
