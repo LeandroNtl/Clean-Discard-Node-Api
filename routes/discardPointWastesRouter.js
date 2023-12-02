@@ -3,10 +3,10 @@ const DiscardPointWastesController = require('../controllers/DiscardPointWasteCo
 
 const router = Router();
 
-router.get('/discard_point_wastes', DiscardPointWastesController.getDiscardPointWastes);
-router.get('/discard_point_wastes/:id', DiscardPointWastesController.getDiscardPointWaste);
-router.post('/discard_point_wastes', DiscardPointWastesController.createDiscardPointWaste);
-router.put('/discard_point_wastes/:id', DiscardPointWastesController.updateDiscardPointWaste);
-router.delete('/discard_point_wastes/:id', DiscardPointWastesController.deleteDiscardPointWaste);
+router.get('/discard-point-wastes', DiscardPointWastesController.getDiscardPointWastes);
+router.get('/discard-point-wastes/:id', DiscardPointWastesController.getDiscardPointWaste);
+router.post('/discard-point-wastes', DiscardPointWastesController.createDiscardPointWaste);
+router.put('/discard-point-wastes/:id', DiscardPointWastesController.updateDiscardPointWaste);
+router.delete('/discard-point-wastes/:id', DiscardPointWastesController.deleteDiscardPointWaste);
 
 module.exports = router;

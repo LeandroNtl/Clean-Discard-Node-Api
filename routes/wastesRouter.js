@@ -4,7 +4,7 @@ const authChecker = require('../middlewares/authChecker');
 
 const router = Router();
 
-router.use(authChecker);
+//router.use(authChecker);
 
 router.get('/wastes', WasteController.getWastes);
 router.get('/wastes/:id', WasteController.getWaste);
