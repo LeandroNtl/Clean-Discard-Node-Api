@@ -44,7 +44,7 @@ class DiscardPointController {
             )
         })
 
-        if (!isNear) {
+        if (isNear) {
             return res.status(400).json({ error: "Já existe um ponto de descarte próximo a este" })
         }
 

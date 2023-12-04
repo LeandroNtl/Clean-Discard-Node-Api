@@ -16,8 +16,8 @@ module.exports = async (req, res, next) => {
         verify(token, jsonSecret.secret);
 
         const { id, email } = await decode(token);
-        req.userId = id;
-        req.userEmail = email;
+        req.user_id = id;
+        req.email = email;
 
         return next();
 

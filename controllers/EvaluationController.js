@@ -24,12 +24,55 @@ class EvaluationController {
     }
 
     static async createEvaluation(req, res) {
+
         const evaluation = req.body;
+        const discard_point_id = evaluation.discard_point_id;
+        const user_id = evaluation.user_id;
+
+        const discard_point = await database.DiscardPoint.findOne({
+            where: { id: Number(discard_point_id) }
+        });
+        const user = await database.User.findOne({
+            where: { id: Number(user_id) }
+        });
+
         try {
+
             const newEvaluation = await database.Evaluation.create(evaluation);
+
+            try {
+
+                const evaluations = await database.Evaluation.findAll({
+                    where: { discard_point_id: Number(discard_point_id) }
+                });
+
+                let sum = 0;
+
+                for (let i = 0; i < evaluations.length; i++) {
+                    sum += evaluations[i].score;
+                }
+
+                const average = sum / evaluations.length;
+
+                await database.DiscardPoint.update({ evaluation: average }, { where: { id: Number(discard_point_id) } });
+
+            } catch (error) {
+                return res.status(500).json(error.message);
+            }
+
+            try {
+                await database.User.update({ score: user.score + 1 }, { where: { id: Number(user_id) } });
+            } catch (error) {
+                return res.status(500).json(error.message);
+            }
+
+
             return res.status(200).json(newEvaluation);
+
         } catch (error) {
+
             return res.status(500).json(error.message);
+
         }
     }
 

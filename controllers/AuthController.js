@@ -35,7 +35,7 @@ class AuthController {
                 { expiresIn: "86400" }
             )
 
-            return res.status(200).json({ token: token });
+            return res.status(200).json({ token: token, id: user.id });
 
         } catch (error) {
             return res.status(500).json(error.message);
@@ -62,9 +62,11 @@ class AuthController {
 
         try {
 
-            const decoded = await verify(userToken, jsonSecret.secret);
+            const decoded = verify(userToken, jsonSecret.secret);
 
-            return res.status(200).send({ valid: true });
+            const { id, email } = decoded;
+
+            return res.status(200).send({ valid: true, id: id, email: email });
 
         } catch (error) {
             return res.status(401).send({ valid: false });
