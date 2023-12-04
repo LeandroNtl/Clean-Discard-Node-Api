@@ -32,7 +32,7 @@ class AuthController {
             const token = sign(
                 { id: user.id }, 
                 jsonSecret.secret, 
-                { expiresIn: "86400" }
+                { expiresIn: 8000 }
             )
 
             return res.status(200).json({ token: token, id: user.id });
@@ -52,7 +52,7 @@ class AuthController {
 
     static async verifyToken(req, res) {
 
-        const { token } = req.headers.authorization;
+        const token = req.headers.authorization;
 
         if (!token) {
             return res.status(401).json({ error: "Token não encontrado" })

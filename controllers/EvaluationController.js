@@ -54,6 +54,8 @@ class EvaluationController {
 
                 const average = sum / evaluations.length;
 
+                average.toFixed(2);
+
                 await database.DiscardPoint.update({ evaluation: average }, { where: { id: Number(discard_point_id) } });
 
             } catch (error) {
@@ -67,7 +69,7 @@ class EvaluationController {
             }
 
 
-            return res.status(200).json(newEvaluation);
+            return res.status(200).json({ message: "Avaliação criada com sucesso" });
 
         } catch (error) {
 
