@@ -38,7 +38,7 @@ class AuthController {
             return res.status(200).json({ token: token, id: user.id });
 
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível realizar o login" });
         }
     }
 
@@ -46,7 +46,7 @@ class AuthController {
         try {
             return res.status(200).json({ message: "Logout realizado com sucesso" });
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível realizar o logout" });
         }
     }
 

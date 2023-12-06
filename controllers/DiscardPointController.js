@@ -7,7 +7,7 @@ class DiscardPointController {
             const allDiscardPoints = await database.DiscardPoint.findAll({ where: { status: "ativo" } });
             return res.status(200).json(allDiscardPoints);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível listar os pontos de descarte" });
         }
     }
     
@@ -19,7 +19,7 @@ class DiscardPointController {
             });
             return res.status(200).json(discardPoint);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível listar o ponto de descarte" });
         }
     }
     
@@ -62,7 +62,7 @@ class DiscardPointController {
             return res.status(200).json(discardPoint);
 
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível cadastrar o ponto de descarte" });
         }
 
     }
@@ -75,7 +75,7 @@ class DiscardPointController {
             const updatedDiscardPoint = await database.DiscardPoint.findOne({ where: { id: Number(id) } });
             return res.status(200).json(updatedDiscardPoint);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível atualizar o ponto de descarte" });
         }
     }
     
@@ -85,7 +85,7 @@ class DiscardPointController {
             await database.DiscardPoint.destroy({ where: { id: Number(id) } });
             return res.status(200).json({ message: `DiscardPoint ${id} deleted` });
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível deletar o ponto de descarte" });
         }
     }
     

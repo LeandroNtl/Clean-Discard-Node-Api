@@ -7,7 +7,7 @@ class WasteController {
             const wastes = await database.Waste.findAll();
             return res.status(200).json(wastes);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível listar os resíduos" });
         }
     }
 
@@ -19,7 +19,7 @@ class WasteController {
             });
             return res.status(200).json(waste);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível listar o resíduo" });
         }
     }
 
@@ -27,9 +27,9 @@ class WasteController {
         const waste = req.body;
         try {
             const newWaste = await database.Waste.create(waste);
-            return res.status(200).json(newWaste);
+            return res.status(200).json({ message: "Resíduo cadastrado com sucesso" });
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível cadastrar o resíduo" });
         }
     }
 
@@ -41,7 +41,7 @@ class WasteController {
             const waste = await database.Waste.findOne({ where: { id: Number(id) } });
             return res.status(200).json(waste);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível atualizar o resíduo" });
         }
     }
 
@@ -51,7 +51,7 @@ class WasteController {
             await database.Waste.destroy({ where: { id: Number(id) } });
             return res.status(200).json({ message: `Waste with id ${id} has been deleted` });
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível deletar o resíduo" });
         }
     }
 

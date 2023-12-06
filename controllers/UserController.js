@@ -9,7 +9,7 @@ class UserController {
             const users = await database.User.findAll();
             return res.status(200).json(users);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível listar os usuários" });
         }
     }
 
@@ -21,7 +21,7 @@ class UserController {
             });
             return res.status(200).json(user);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível listar o usuário" });
         }
     }
 
@@ -58,10 +58,10 @@ class UserController {
                 score: score || 0,
             });
 
-            return res.status(200).json(newUser);
+            return res.status(200).json({ newUser, message: "Usuário cadastrado com sucesso" });
 
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível cadastrar o usuário" });
         }
 
     }
@@ -79,7 +79,7 @@ class UserController {
             }
             throw new Error('User not found');
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível atualizar o usuário" });
         }
     }
 
@@ -89,7 +89,7 @@ class UserController {
             await database.User.destroy({ where: { id: Number(id) } });
             return res.status(200).json({ message: `User with id ${id} has been deleted` });
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível deletar o usuário" });
         }
     }
 

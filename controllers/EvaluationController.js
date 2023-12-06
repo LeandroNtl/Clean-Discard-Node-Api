@@ -7,7 +7,7 @@ class EvaluationController {
             const evaluations = await database.Evaluation.findAll();
             return res.status(200).json(evaluations);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível listar as avaliações" });
         }
     }
 
@@ -19,7 +19,7 @@ class EvaluationController {
             });
             return res.status(200).json(evaluation);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "'Não foi possível listar a avaliação" });
         }
     }
 
@@ -32,6 +32,7 @@ class EvaluationController {
         const discard_point = await database.DiscardPoint.findOne({
             where: { id: Number(discard_point_id) }
         });
+
         const user = await database.User.findOne({
             where: { id: Number(user_id) }
         });
@@ -54,26 +55,25 @@ class EvaluationController {
 
                 const average = sum / evaluations.length;
 
-                average.toFixed(2);
+                const newAverage = average.toFixed(2);
 
-                await database.DiscardPoint.update({ evaluation: average }, { where: { id: Number(discard_point_id) } });
+                await database.DiscardPoint.update({ evaluation: newAverage }, { where: { id: Number(discard_point_id) } });
 
             } catch (error) {
-                return res.status(500).json(error.message);
+                return res.status(500).json({ error: "Não foi possível atualizar a avaliação do ponto de descarte" });
             }
 
             try {
                 await database.User.update({ score: user.score + 1 }, { where: { id: Number(user_id) } });
             } catch (error) {
-                return res.status(500).json(error.message);
+                return res.status(500).json({ error: "Não foi possível atualizar a pontuação do usuário" });
             }
 
-
-            return res.status(200).json({ message: "Avaliação criada com sucesso" });
+            return res.status(200).json({ message: "Avaliação criada com sucesso", newEvaluation });
 
         } catch (error) {
 
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível criar a avaliação " });
 
         }
     }
@@ -86,7 +86,7 @@ class EvaluationController {
             const evaluation = await database.Evaluation.findOne({ where: { id: Number(id) } });
             return res.status(200).json(evaluation);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível atualizar a avaliação" });
         }
     }
 
@@ -96,7 +96,7 @@ class EvaluationController {
             await database.Evaluation.destroy({ where: { id: Number(id) } });
             return res.status(200).json({ message: `Evaluation with id ${id} has been deleted` });
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ error: "Não foi possível deletar a avaliação" });
         }
     }
 
