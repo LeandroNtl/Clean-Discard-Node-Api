@@ -6,37 +6,37 @@ module.exports = {
     const currentDate = new Date();
     await queryInterface.bulkInsert('Wastes', [
       {
-        name: 'Baterias',
+        name: 'baterias',
         description: 'Baterias de celulares, pilhas e baterias de carro',
         createdAt: currentDate,
         updatedAt: currentDate
       },
       {
-        name: 'Eletrônicos',
+        name: 'eletronicos',
         description: 'Celulares, computadores, televisores, etc',
         createdAt: currentDate,
         updatedAt: currentDate
       },
       {
-        name: 'Lâmpadas',
+        name: 'lampadas',
         description: 'Lâmpadas fluorescentes, incandescentes, etc',
         createdAt: currentDate,
         updatedAt: currentDate
       },
       {
-        name: 'Papel',
+        name: 'papel',
         description: 'Papel, papelão, etc',
         createdAt: currentDate,
         updatedAt: currentDate
       },
       {
-        name: 'Plástico',
+        name: 'plastico',
         description: 'Garrafas pet, sacolas, etc',
         createdAt: currentDate,
         updatedAt: currentDate
       },
       {
-        name: 'Vidro',
+        name: 'vidro',
         description: 'Garrafas, copos, etc',
         createdAt: currentDate,
         updatedAt: currentDate

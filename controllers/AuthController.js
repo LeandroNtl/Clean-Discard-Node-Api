@@ -32,7 +32,7 @@ class AuthController {
             const token = sign(
                 { id: user.id }, 
                 jsonSecret.secret, 
-                { expiresIn: 8000 }
+                { expiresIn: 60 }
             )
 
             return res.status(200).json({ token: token, id: user.id });

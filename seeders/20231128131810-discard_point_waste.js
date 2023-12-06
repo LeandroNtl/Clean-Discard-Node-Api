@@ -18,26 +18,8 @@ module.exports = {
         updatedAt: currentDate
       },
       {
-        discard_point_id: 1,
-        waste_id: 3,
-        createdAt: currentDate,
-        updatedAt: currentDate
-      },
-      {
-        discard_point_id: 1,
-        waste_id: 4,
-        createdAt: currentDate,
-        updatedAt: currentDate
-      },
-      {
-        discard_point_id: 1,
-        waste_id: 5,
-        createdAt: currentDate,
-        updatedAt: currentDate
-      },
-      {
-        discard_point_id: 1,
-        waste_id: 6,
+        discard_point_id: 2,
+        waste_id: 2,
         createdAt: currentDate,
         updatedAt: currentDate
       },
@@ -48,62 +30,20 @@ module.exports = {
         updatedAt: currentDate
       },
       {
-        discard_point_id: 2,
-        waste_id: 2,
-        createdAt: currentDate,
-        updatedAt: currentDate
-      },
-      {
-        discard_point_id: 2,
-        waste_id: 3,
-        createdAt: currentDate,
-        updatedAt: currentDate
-      },
-      {
-        discard_point_id: 2,
-        waste_id: 4,
-        createdAt: currentDate,
-        updatedAt: currentDate
-      },
-      {
-        discard_point_id: 2,
+        discard_point_id: 3,
         waste_id: 5,
         createdAt: currentDate,
         updatedAt: currentDate
       },
       {
-        discard_point_id: 2,
+        discard_point_id: 3,
         waste_id: 6,
         createdAt: currentDate,
         updatedAt: currentDate
       },
       {
         discard_point_id: 3,
-        waste_id: 1,
-        createdAt: currentDate,
-        updatedAt: currentDate
-      },
-      {
-        discard_point_id: 3,
-        waste_id: 2,
-        createdAt: currentDate,
-        updatedAt: currentDate
-      },
-      {
-        discard_point_id: 3,
-        waste_id: 3,
-        createdAt: currentDate,
-        updatedAt: currentDate
-      },
-      {
-        discard_point_id: 3,
         waste_id: 4,
-        createdAt: currentDate,
-        updatedAt: currentDate
-      },
-      {
-        discard_point_id: 3,
-        waste_id: 5,
         createdAt: currentDate,
         updatedAt: currentDate
       }
