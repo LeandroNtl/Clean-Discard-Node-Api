@@ -4,7 +4,7 @@ class DiscardPointController {
 
     static async getDiscardPoints(req, res) {
         try {
-            const allDiscardPoints = await database.DiscardPoint.findAll({ where: { status: "ativo" } });
+            const allDiscardPoints = await database.DiscardPoint.findAll();
             return res.status(200).json(allDiscardPoints);
         } catch (error) {
             return res.status(500).json({ error: "Não foi possível listar os pontos de descarte" });
@@ -59,7 +59,7 @@ class DiscardPointController {
                 evaluation: evaluation || 0,
             });
 
-            return res.status(200).json(discardPoint);
+            return res.status(200).json({ message: "Cadastro solicitado com sucesso" });
 
         } catch (error) {
             return res.status(500).json({ error: "Não foi possível cadastrar o ponto de descarte" });
