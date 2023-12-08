@@ -59,7 +59,7 @@ class DiscardPointController {
                 evaluation: evaluation || 0,
             });
 
-            return res.status(200).json({ message: "Cadastro solicitado com sucesso" });
+            return res.status(200).json({ message: "Cadastro solicitado com sucesso", discardPoint });
 
         } catch (error) {
             return res.status(500).json({ error: "Não foi possível cadastrar o ponto de descarte" });

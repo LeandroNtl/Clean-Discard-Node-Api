@@ -54,7 +54,7 @@ class UserController {
                 email,
                 password: passwordHash,
                 status: status || true,
-                role: role || "2",
+                role: role || 2,
                 score: score || 0,
             });
 

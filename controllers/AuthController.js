@@ -30,9 +30,9 @@ class AuthController {
             }
 
             const token = sign(
-                { id: user.id, name: user.name, email: user.email }, 
+                { id: user.id, name: user.name, email: user.email, role: user.role }, 
                 jsonSecret.secret, 
-                { expiresIn: 60 }
+                { expiresIn: 8000 }
             )
 
             return res.status(200).json({ token: token, id: user.id });
@@ -64,9 +64,9 @@ class AuthController {
 
             const decoded = verify(userToken, jsonSecret.secret);
 
-            const { id, name, email } = decoded;
+            const { id, name, email, role } = decoded;
 
-            return res.status(200).send({ valid: true, id: id, name: name, email: email });
+            return res.status(200).send({ valid: true, id: id, name: name, email: email, role: role });
 
         } catch (error) {
             return res.status(401).send({ valid: false });
