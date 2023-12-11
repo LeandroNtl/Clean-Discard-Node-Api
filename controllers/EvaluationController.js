@@ -94,7 +94,7 @@ class EvaluationController {
         const { id } = req.params;
         try {
             await database.Evaluation.destroy({ where: { id: Number(id) } });
-            return res.status(200).json({ message: `Evaluation with id ${id} has been deleted` });
+            return res.status(200).json({ message: "Avaliação deletada com sucesso" });
         } catch (error) {
             return res.status(500).json({ error: "Não foi possível deletar a avaliação" });
         }
